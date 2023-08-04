@@ -83,6 +83,31 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+.text-container {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  align-items: center;
+}
+
+label {
+  width: 5rem;
+}
+
+textarea {
+  width: 400px;
+  height: 100px;
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+.result {
+  min-height: 3rem;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

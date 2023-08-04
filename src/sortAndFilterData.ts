@@ -19,7 +19,9 @@ const sortAndFilterData = (jsonInputValues: string): string => {
   
       return JSON.stringify(result);
     } catch (e) {
-      return `Enter valid json ${e}`;
+      return `Please enter valid json 
+      "data": [{"name": "John", "email": "john25@mail.com"},{"name": "John", "email": "john1@mail.com"},{"name": "Jane", "email": "jane@mail.com"}] 
+      "condition": { "include": [ { "name": "John"}], "sort_by": [ "email"]}`;
     }
   };
 

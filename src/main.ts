@@ -1,22 +1,55 @@
+import sortAndFilterData from './sortAndFilterData';
 import './style.css'
-import typescriptLogo from './typescript.svg'
-import viteLogo from '/vite.svg'
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://www.typescriptlang.org/" target="_blank">
-      <img src="${typescriptLogo}" class="logo vanilla" alt="TypeScript logo" />
-    </a>
-    <h1>Vite + TypeScript</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
+  <h1>Data Filtering App</h1>
+
+  
+  <p>Enter an array of filterable objects in the following format:<br>
+  <code> [{"name": "John", "email": "john25@mail.com", "age": "30"},{"name": "John", "email": "john1@mail.com", "age": "27"},{"name": "Jane", "email": "jane@mail.com", "age": "27"}]</p>
+  </code>
+  <div class="text-container">
+    <label for="dataInput">Data:</label>
+    <textarea id="dataInput" placeholder="Enter data JSON"></textarea>
     </div>
-    <p class="read-the-docs">
-      Click on the Vite and TypeScript logos to learn more
-    </p>
+
+  <p>Enter filtering and sorting conditions in the following format:<br>
+    <code>{"include": [{"name": "John"}, {"age": "30"}], "sort_by": ["email"]}</code></p>
+    <div class="text-container">
+    <label for="conditionInput">Condition:</label>
+    <textarea id="conditionInput" placeholder="Enter condition JSON"></textarea>  
+    </div>
+
+  <button id="filterButton">Filter Data</button>
+
+  <div class="result" id="result"></div>
   </div>
 `
+// Get references to the input fields and the result container
+const dataInput = document.getElementById('dataInput') as HTMLInputElement;
+const conditionInput = document.getElementById('conditionInput') as HTMLInputElement;
+const filterButton = document.getElementById('filterButton');
+const resultContainer = document.getElementById('result');
 
+// Add click event listener to the filter button
+filterButton!.addEventListener('click', () => {
+  // Get the entered data and condition JSON
+  const data = dataInput.value;
+  const condition = conditionInput.value;
+
+  try {
+  
+    // Call filtering function with the data and condition
+    if (!data || !condition) {
+      throw new Error ('Please enter data and condition')
+    }
+    const filteredData = sortAndFilterData(`{"data": ${data}, "condition": ${condition}}`);
+
+    // Display the filtered data in the result container
+    resultContainer!.textContent = filteredData;
+  } catch (error) {
+    // Display an error message if JSON parsing fails
+    resultContainer!.textContent = `${error}`;
+  }
+});

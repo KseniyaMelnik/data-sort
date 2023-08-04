@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1691163021898" clover="3.2.0">
-  <project timestamp="1691163021899" name="All files">
+<coverage generated="1691163402721" clover="3.2.0">
+  <project timestamp="1691163402723" name="All files">
     <metrics statements="75" coveredstatements="71" conditionals="22" coveredconditionals="18" methods="7" coveredmethods="7" elements="104" coveredelements="96" complexity="0" loc="75" ncloc="75" packages="1" files="2" classes="2"/>
     <file name="SortAndFilter.ts" path="D:\Ксю\data-sort\src\SortAndFilter.ts">
       <metrics statements="49" coveredstatements="47" conditionals="19" coveredconditionals="16" methods="6" coveredmethods="6"/>
