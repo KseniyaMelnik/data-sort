@@ -5,7 +5,6 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <div>
   <h1>Data Filtering App</h1>
 
-  
   <p>Enter an array of filterable objects in the following format:<br>
   <code> [{"name": "John", "email": "john25@mail.com", "age": "30"},{"name": "John", "email": "john1@mail.com", "age": "27"},{"name": "Jane", "email": "jane@mail.com", "age": "27"}]</p>
   </code>
