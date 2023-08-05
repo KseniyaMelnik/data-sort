@@ -45,3 +45,71 @@ describe("sortAndFilterData", () => {
       );
     });
 });
+
+describe("sortAndFilterData", () => {
+  it("should return an error message when data is not an array", () => {
+    const jsonInput = `{"data": "not an array", "condition": {}}`;
+    const result = sortAndFilterData(jsonInput);
+    expect(result).toContain("Data must be an array");
+  });
+
+  it("should return an error message when data is not an array of objects", () => {
+    const jsonInput = `{"data": [1, 2, 3], "condition": {}}`;
+    const result = sortAndFilterData(jsonInput);
+    expect(result).toContain("Data must be an array of the following form");
+  });
+
+  it("should return an error message when condition is not an object", () => {
+    const jsonInput = `{"data": [], "condition": "not an object"}`;
+    const result = sortAndFilterData(jsonInput);
+    expect(result).toContain("Condition must be an object");
+  });
+
+  it("should return an error message when include property is not an array of objects", () => {
+    const jsonInput = `{"data": [], "condition": {"include": "not an array"}}`;
+    const result = sortAndFilterData(jsonInput);
+    expect(result).toContain("The \"include\" property must be an array of objects");
+  });
+
+  it("should return an error message when include property contains non-object elements", () => {
+    const jsonInput = `{"data": [], "condition": {"include": ["not an object"]}}`;
+    const result = sortAndFilterData(jsonInput);
+    expect(result).toContain("The \"include\" property must be an array of objects");
+  });
+
+  it("should return an error message when exclude property is not an array of objects", () => {
+    const jsonInput = `{"data": [], "condition": {"exclude": "not an array"}}`;
+    const result = sortAndFilterData(jsonInput);
+    expect(result).toContain("The \"exclude\" property must be an array of objects");
+  });
+
+  it("should return an error message when exclude property contains non-object elements", () => {
+    const jsonInput = `{"data": [], "condition": {"exclude": ["not an object"]}}`;
+    const result = sortAndFilterData(jsonInput);
+    expect(result).toContain("The \"exclude\" property must be an array of objects");
+  });
+
+  it("should return an error message when sort_by property is not an array of strings", () => {
+    const jsonInput = `{"data": [], "condition": {"sort_by": "not an array"}}`;
+    const result = sortAndFilterData(jsonInput);
+    expect(result).toContain("The \"sort_by\" property must be an array of strings");
+  });
+
+  it("should return an error message when sort_by property contains non-string elements", () => {
+    const jsonInput = `{"data": [], "condition": {"sort_by": [123]}}`;
+    const result = sortAndFilterData(jsonInput);
+    expect(result).toContain("The \"sort_by\" property must be an array of strings");
+  });
+
+  it("should return an error message when an invalid property is used", () => {
+    const jsonInput = `{"data": [], "condition": {"invalid_prop": []}}`;
+    const result = sortAndFilterData(jsonInput);
+    expect(result).toContain("You can only use the following fields for filtering and sorting");
+  });
+
+  it("should return an error message for invalid JSON input", () => {
+    const jsonInput = `{"data": [], "condition": {"include": []}`;
+    const result = sortAndFilterData(jsonInput);
+    expect(result).toContain("Please enter valid json");
+  });
+});
